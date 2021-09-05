@@ -22,18 +22,21 @@ public class InvoicesController {
     private final InvoiceService invoiceService;
 
 
-    @GetMapping(path = "/invoice/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/invoice/{id}", produces = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<InvoiceDTO> getInvoicesById(@PathVariable(name = "id", required = false) String id) {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        logger.info("Sending request -> service layer -> invoice of id: {0}", id);
+        return invoiceService.getInvoiceById(id);
     }
 
     @GetMapping(path = "/invoices", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<InvoiceDTO>> getAllInvoices() {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        logger.info("Sending request -> service layer -> all invoices.");
+        return invoiceService.getAllInvoices();
     }
 
     @PostMapping(path = "/invoice", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<HttpStatus> createInvoice(@RequestBody InvoiceRequest request) {
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        logger.info("Sending request -> service layer -> creation fo invoice.");
+        return invoiceService.createNewInvoice(request);
     }
 }
