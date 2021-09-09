@@ -45,7 +45,6 @@ class InvoicesControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    //    @WithMockUser(username = "user", password = "password", roles = "admin")
     @Test
     void shouldSaveRequestToDBWithStatusOk_whenInvoiceRequestIsValid() throws Exception {
         final InvoiceRequest invoiceRequest = TestData.REQUEST_1;
@@ -53,7 +52,6 @@ class InvoicesControllerTest {
         Mockito.when(invoiceService.createNewInvoice(invoiceRequest)).thenReturn(new ResponseEntity<>(HttpStatus.CREATED));
 
         mockMvc.perform(post(TestData.CREATE_INVOICE_PATH)
-//                        .with(user("user").password("password").roles("ADMIN"))
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestAsString))
