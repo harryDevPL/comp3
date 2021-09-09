@@ -25,7 +25,7 @@ public class Invoice {
 
     private boolean auto_advance;
     private String collection_method;
-    private String description;
+    private String desc;
     private String charge;
     private String currency;
 

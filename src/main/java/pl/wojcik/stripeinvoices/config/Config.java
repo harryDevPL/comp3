@@ -3,6 +3,7 @@ package pl.wojcik.stripeinvoices.config;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.*;
@@ -24,7 +25,7 @@ public class Config {
     @Bean
     public Docket swaggerApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-//                .ignoredParameterTypes(UsernamePasswordAuthenticationToken.class)
+                .ignoredParameterTypes(UsernamePasswordAuthenticationToken.class)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("pl.wojcik.stripeinvoices.controller"))
                 .paths(PathSelectors.any())

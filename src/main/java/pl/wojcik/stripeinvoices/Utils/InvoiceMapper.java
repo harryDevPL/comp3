@@ -18,7 +18,7 @@ public class InvoiceMapper {
                 .customerEmail(invoice.getCustomer_email())
                 .autoAdvance(invoice.isAuto_advance())
                 .collectionMethod(invoice.getCollection_method())
-                .description(invoice.getDescription())
+                .description(invoice.getDesc())
                 .build();
     }
 
@@ -28,7 +28,7 @@ public class InvoiceMapper {
                 .customer(request.getCustomer())
                 .auto_advance(request.isAutoAdvance())
                 .collection_method(request.getCollectionMethod())
-                .description(request.getDescription())
+                .desc(request.getDescription())
                 .charge(request.getCharge())
                 .currency(request.getCurrency())
                 .lines(request.getLines())
