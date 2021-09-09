@@ -1,4 +1,4 @@
-package pl.wojcik.stripeinvoices.service;
+package pl.wojcik.stripeinvoices.Utils;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -10,18 +10,21 @@ import pl.wojcik.stripeinvoices.model.entity.Invoice;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class InvoiceMapper {
 
-    protected static InvoiceDTO convertEntityToDTO(Invoice invoice) {
+    public static InvoiceDTO convertEntityToDTO(Invoice invoice) {
         return InvoiceDTO.builder()
-                .dto_id(invoice.getId())
+                .dtoDBId(invoice.getId())
+                .id(invoice.getInvoice_id())
                 .customer(invoice.getCustomer())
+                .customerEmail(invoice.getCustomer_email())
                 .autoAdvance(invoice.isAuto_advance())
                 .collectionMethod(invoice.getCollection_method())
                 .description(invoice.getDescription())
                 .build();
     }
 
-    public static Invoice requestToEntity(InvoiceRequest request) {
+    public static Invoice convertRequestToEntity(InvoiceRequest request) {
         return Invoice.builder()
+                .invoice_id(InvoiceIdGenerator.generate())
                 .customer(request.getCustomer())
                 .auto_advance(request.isAutoAdvance())
                 .collection_method(request.getCollectionMethod())

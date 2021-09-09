@@ -1,24 +1,24 @@
 package pl.wojcik.stripeinvoices.model.entity;
 
-import lombok.Builder;
-import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.*;
 import pl.wojcik.stripeinvoices.model.InvoiceStatus;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.List;
+import java.util.Set;
 
 @Entity
-@Data
 @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Invoice {
 
     @Id
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
-    @Column(length = 36, nullable = false, updatable = false)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(nullable = false)
+    private String invoice_id;
 
     @Column(nullable = false)
     private String customer;
@@ -30,9 +30,10 @@ public class Invoice {
     private String currency;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Product> lines;
+    @JoinColumn(name = "fk", referencedColumnName = "id")
+    private Set<Product> lines;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private InvoiceStatus status;
 
     private Integer total;

@@ -1,6 +1,6 @@
 package pl.wojcik.stripeinvoices.controller;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -14,15 +14,14 @@ import pl.wojcik.stripeinvoices.service.InvoiceService;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/v1")
-@RequiredArgsConstructor
+@RequestMapping(path = "api/v1")
+@AllArgsConstructor
 public class InvoicesController {
 
-    private final Logger logger = LoggerFactory.getLogger(InvoicesController.class);
+    private static final Logger logger = LoggerFactory.getLogger(InvoicesController.class);
     private final InvoiceService invoiceService;
 
-
-    @GetMapping(path = "/invoice/{id}", produces = MediaType.APPLICATION_JSON_VALUE )
+    @GetMapping(path = "/invoice/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<InvoiceDTO> getInvoicesById(@PathVariable(name = "id", required = false) String id) {
         logger.info("Sending request -> service layer -> invoice of id: {0}", id);
         return invoiceService.getInvoiceById(id);

@@ -1,12 +1,14 @@
 package pl.wojcik.stripeinvoices.model;
 
+import lombok.Builder;
 import lombok.Data;
 import pl.wojcik.stripeinvoices.model.entity.Product;
 
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Set;
 
 @Data
+@Builder
 public class InvoiceRequest {
 
     private String customer;
@@ -16,7 +18,7 @@ public class InvoiceRequest {
 
     private String charge;
     private String currency;
-    private List<Product> lines;
+    private Set<Product> lines;
     private Timestamp periodStart;
     private Timestamp periodEnd;
     private String status;

@@ -2,12 +2,14 @@ package pl.wojcik.stripeinvoices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-public class StripeInvoicesApplication {
+@ComponentScan(basePackages = {})
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StripeInvoicesApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
